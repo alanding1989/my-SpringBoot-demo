@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alanding.mp.dao.UserMapper">
+
+    <select id="mySelectAll" resultType="User">
+        SELECT * FROM user ${ew.customSqlSegment}
+    </select>
+
+    <select id="selectUserMapPage" resultType="java.util.Map">
+        <!--  如果用wrapper条件构造器构造，那条件构造语句写法都一样  -->
+        SELECT name, age FROM user ${ew.customSqlSegment}
+    </select>
+</mapper>

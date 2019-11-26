@@ -1,0 +1,14 @@
+server:
+    # 服务提供者网络端口，用多个端口就可以提供多个相同服务，打成Jar包java -jar 执行
+    port: 8001
+spring:
+    application:
+        name: provider-ticket
+
+eureka:
+    instance:
+        # 注册服务的时候使用服务的Ip地址
+        prefer-ip-address: true
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka/

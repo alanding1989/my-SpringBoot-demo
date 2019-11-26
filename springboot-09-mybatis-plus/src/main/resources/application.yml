@@ -1,0 +1,62 @@
+server:
+    port: 8001
+
+
+spring:
+    application:
+        name: microservicecloud-dept
+    datasource:
+        # 当前连接池类型
+        type: com.alibaba.druid.pool.DruidDataSource
+        #        type: com.zaxxer.hikari.HikariDataSource
+        # mysql驱动包
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        # 数据库连接url
+        url: jdbc:mysql://localhost:3306/mybatis_plus?useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password: root
+        dbcp2:
+            # 数据库连接池的最小维持连接数
+            min-idle: 5
+            # 初始化连接数
+            initial-size: 5
+            # 最大连接数
+            max-total: 5
+            # 等待连接获取的最大超时时间
+            max-wait-millis: 200
+
+
+mybatis-plus:
+    # mybatis配置文件路径
+    # config-location: classpath*:mybatis/mybatis.cfg.xml
+
+    # configuration 和 config-location 的 Mybatis配置文件路径不能同时定义
+    configuration:
+        # 默认就为 true
+        map-underscore-to-camel-case: true
+        cache-enabled: true
+    # 所有Entity实体类所在包，这样mapper.xml中就不用写全类名了
+    type-aliases-package: com.alanding.mp.entity
+    # mapper.xml映射文件
+    mapper-locations:
+        - classpath*:mybatis/mapper/**/*.xml
+    global-config:
+        db-config:
+            # 主键自增策略
+            id-type: auto
+            # 全库表名都有前缀，实体类不想加前缀时设置表名前缀。实体类上局部注解优先于该全局配置
+            table-prefix: mp_
+            # 逻辑删除，默认就是删除了为0，未删除为0
+            # logic-delete-value: 1
+            # logic-not-delete-value: 0
+
+
+logging:
+    level:
+        root: warn
+        com.alanding.mp.dao: trace
+    pattern:
+        # 只输出日志级别，内容，换行，只关心sql语句
+        console: '%p%m%n'
+
+
